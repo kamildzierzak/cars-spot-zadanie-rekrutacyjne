@@ -15,14 +15,14 @@ const toggleMenu = () => {
     <div class="flex h-8">
       <img :src="logo" alt="Cars Spot Logo" class="w-auto object-contain transition-all" />
     </div>
-    <ul class="text-dark-gray hidden gap-6 md:flex">
+    <ul class="text-dark-gray hidden gap-6 lg:flex">
       <li class="font-roboto hover:underline hover:underline-offset-4">
         <a href="#gallery-section">Galeria zdjęć</a>
       </li>
       <li class="font-roboto hover:underline hover:underline-offset-4"><a href="#faq">FaQ</a></li>
     </ul>
-    <MainButton to="tel:#" extra-class="hidden md:block ">Zadzwoń do nas</MainButton>
-    <button class="block text-white md:hidden" @click="toggleMenu">
+    <MainButton to="tel:#" extra-class="hidden lg:block ">Zadzwoń do nas</MainButton>
+    <button class="block text-white lg:hidden" @click="toggleMenu">
       <svg
         v-show="!isOpen"
         class="text-center"
@@ -52,7 +52,7 @@ const toggleMenu = () => {
     </button>
     <div
       v-show="isOpen"
-      class="bg-dark-gray absolute left-0 top-20 z-50 flex h-[calc(100vh-80px)] w-full flex-col md:hidden"
+      class="bg-dark-gray absolute left-0 top-20 z-50 flex h-[calc(100vh-80px)] w-full flex-col lg:hidden"
     >
       <ul class="text-light-gray flex flex-col gap-4 p-4 text-xl">
         <li class="font-roboto hover:underline hover:underline-offset-4">

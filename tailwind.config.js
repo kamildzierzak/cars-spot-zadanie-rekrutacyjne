@@ -10,6 +10,7 @@ export default {
       },
       fontFamily: {
         roboto: ['Roboto Flex', 'sans-serif'],
+        'roboto-condens': ['Roboto Condensed', 'sans-serif'],
         bebas: ['"Bebas Neue"', 'sans-serif']
       }
     }
