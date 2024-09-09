@@ -11,7 +11,7 @@ const toggleMenu = () => {
 </script>
 
 <template>
-  <nav class="mx-auto flex h-20 w-full items-center justify-between px-8 py-4 lg:px-[120px]">
+  <nav class="mx-auto flex h-20 w-full items-center justify-between py-4">
     <div class="flex h-8">
       <img :src="logo" alt="Cars Spot Logo" class="w-auto object-contain transition-all" />
     </div>
