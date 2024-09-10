@@ -15,7 +15,7 @@ const toggleMenu = () => {
     <div class="flex h-8">
       <img :src="logo" alt="Cars Spot Logo" class="w-auto object-contain transition-all" />
     </div>
-    <ul class="text-dark-gray hidden gap-6 lg:flex">
+    <ul class="hidden gap-6 text-dark-gray lg:flex">
       <li class="font-roboto hover:underline hover:underline-offset-4">
         <a href="#gallery-section">Galeria zdjęć</a>
       </li>
@@ -50,16 +50,36 @@ const toggleMenu = () => {
         ></path>
       </svg>
     </button>
-    <div
-      v-show="isOpen"
-      class="bg-dark-gray absolute left-0 top-20 z-50 flex h-[calc(100vh-80px)] w-full flex-col lg:hidden"
-    >
-      <ul class="text-light-gray flex flex-col gap-4 p-4 text-xl">
-        <li class="font-roboto hover:underline hover:underline-offset-4">
-          <a href="#gallery-section">Galeria zdjęć</a>
-        </li>
-        <li class="font-roboto hover:underline hover:underline-offset-4"><a href="#faq">FaQ</a></li>
-      </ul>
-    </div>
+    <Transition name="slide-fade">
+      <div
+        v-show="isOpen"
+        class="absolute left-0 top-20 z-50 flex h-[calc(100vh-80px)] w-full flex-col bg-dark-gray lg:hidden"
+      >
+        <ul class="flex flex-col gap-4 px-4 py-4 text-xl text-light-gray sm:px-8">
+          <li class="font-roboto hover:underline hover:underline-offset-4">
+            <a href="#gallery-section">Galeria zdjęć</a>
+          </li>
+          <li class="font-roboto hover:underline hover:underline-offset-4">
+            <a href="#faq">FaQ</a>
+          </li>
+        </ul>
+      </div>
+    </Transition>
   </nav>
 </template>
+
+<style>
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(96px);
+  opacity: 0;
+}
+</style>

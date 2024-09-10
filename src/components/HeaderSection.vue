@@ -24,7 +24,7 @@ import hero from '@/assets/img/hero.png'
       <img
         :src="hero"
         alt="Three black cars"
-        class="bottom-0 right-0 -z-40 mt-8 translate-x-8 pb-8 pl-8 lg:absolute lg:mt-0 lg:translate-x-0 lg:pb-24"
+        class="bottom-0 right-0 -z-40 mt-8 translate-x-0 pb-8 pl-8 lg:absolute lg:mt-0 lg:translate-x-8 lg:pb-24 lg:pl-0"
       />
       <div class="absolute -top-20 right-0 -z-50 hidden lg:block lg:pr-20">
         <svg
