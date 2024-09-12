@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 interface Props {
   images: string[]
@@ -10,6 +10,27 @@ const carousel = ref<HTMLElement | null>(null)
 const currentIndex = ref(0)
 const slideWidth = ref(0)
 
+let startPosition = 0
+let swipeDistance = 0
+
+const handleTouchStart = (event: TouchEvent) => {
+  startPosition = event.touches[0].clientX
+}
+
+const handleTouchMove = (event: TouchEvent) => {
+  swipeDistance = event.touches[0].clientX - startPosition
+}
+
+const handleTouchEnd = () => {
+  if (swipeDistance > 50) {
+    currentIndex.value = Math.max(currentIndex.value - 1, 0)
+  } else if (swipeDistance < -50) {
+    currentIndex.value = Math.min(currentIndex.value + 1, images.length - 1)
+  }
+
+  swipeDistance = 0
+}
+
 const jumpToSlide = (index: number) => {
   currentIndex.value = index
 }
@@ -18,21 +39,35 @@ const updateWidth = () => {
   const width = carousel.value ? carousel.value.clientWidth : 0
 
   if (window.innerWidth >= 1024) {
-    slideWidth.value = width / 2.3
+    slideWidth.value = width / 2.1
   } else if (window.innerWidth >= 640) {
-    slideWidth.value = width * 0.6
+    slideWidth.value = width * 1.1
   } else {
-    slideWidth.value = width * 0.85
+    slideWidth.value = width * 1.1
   }
 }
+
+watch(
+  () => images,
+  () => {
+    currentIndex.value = 0
+  }
+)
 
 onMounted(() => {
   updateWidth()
   window.addEventListener('resize', updateWidth)
+
+  carousel.value?.addEventListener('touchstart', handleTouchStart)
+  carousel.value?.addEventListener('touchmove', handleTouchMove)
+  carousel.value?.addEventListener('touchend', handleTouchEnd)
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWidth)
+  carousel.value?.removeEventListener('touchstart', handleTouchStart)
+  carousel.value?.removeEventListener('touchmove', handleTouchMove)
+  carousel.value?.removeEventListener('touchend', handleTouchEnd)
 })
 </script>
 

@@ -8,6 +8,10 @@ const isOpen = ref(false)
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
 }
+
+const closeMenu = () => {
+  isOpen.value = false
+}
 </script>
 
 <template>
@@ -57,10 +61,10 @@ const toggleMenu = () => {
       >
         <ul class="flex flex-col gap-4 px-4 py-4 text-xl text-light-gray sm:px-8">
           <li class="font-roboto hover:underline hover:underline-offset-4">
-            <a href="#gallery-section">Galeria zdjęć</a>
+            <a @click="closeMenu" href="#gallery-section">Galeria zdjęć</a>
           </li>
           <li class="font-roboto hover:underline hover:underline-offset-4">
-            <a href="#faq">FaQ</a>
+            <a @click="closeMenu" href="#faq">FaQ</a>
           </li>
         </ul>
       </div>
